@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "label": "3D-design og 3D-print",
+      "id": "3d-print"
+    },
+    {
+      "label": "Find en 3D-model",
+      "id": "models"
+    },
+    {
+      "label": "3D-scanning",
+      "id": "3d-scanning"
+    },
+    {
+      "label": "Laser og vektortegning",
+      "id": "laser"
+    },
+    {
+      "label": "Folieskæring",
+      "id": "vinyl-cutting"
+    },
+    {
+      "label": "Vandskæring",
+      "id": "waterjet-cutting"
+    },
+    {
+      "label": "Maskinbroderi",
+      "id": "embroidery"
+    },
+    {
+      "label": "Elektronik og programmering",
+      "id": "electronics"
+    },
+    {
+      "label": "Lyd, grafik, print og video",
+      "id": "media"
+    }
+  ],
+  "tools": [
+    {
+      "id": "tinkercad",
+      "name": "Tinkercad",
+      "url": "https://www.tinkercad.com/",
+      "description": "Byg en 3D-model af simple former, eller afprøv et Arduino-kredsløb i browseren.",
+      "status": "in-use",
+      "type": "web",
+      "categoryIds": [
+        "3d-print",
+        "electronics"
+      ]
+    },
+    {
+      "id": "openscad",
+      "name": "OpenSCAD",
+      "url": "https://openscad.org",
+      "description": "Byg parametriske 3D-modeller med kode, så du kan ændre mål og genbruge designet.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "3d-print"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/openscad/openscad"
+    },
+    {
+      "id": "prusaslicer",
+      "name": "PrusaSlicer",
+      "url": "https://www.prusa3d.com/page/prusaslicer_427/",
+      "description": "Klargør en 3D-model til print med den relevante Prusa-printerprofil.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "3d-print"
+      ],
+      "license": "Open source",
+      "hardware": [
+        "Original Prusa i3 MK3S+",
+        "Original Prusa MINI"
+      ],
+      "githubUrl": "https://github.com/prusa3d/PrusaSlicer"
+    },
+    {
+      "id": "bambu-studio",
+      "name": "Bambu Studio",
+      "url": "https://github.com/bambulab/BambuStudio",
+      "description": "Klargør print til X1 Carbon og fordel farver eller filamenter på AMS-spolerne.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "3d-print"
+      ],
+      "license": "Open source",
+      "hardware": [
+        "Bambu Lab X1 Carbon med firespolet AMS"
+      ],
+      "githubUrl": "https://github.com/bambulab/BambuStudio"
+    },
+    {
+      "id": "printables",
+      "name": "Printables",
+      "url": "https://www.printables.com/",
+      "description": "Find 3D-modeller til print, og se licensen på den enkelte model.",
+      "status": "in-use",
+      "type": "web",
+      "categoryIds": [
+        "models"
+      ]
+    },
+    {
+      "id": "makerworld",
+      "name": "MakerWorld",
+      "url": "https://makerworld.com",
+      "description": "Find 3D-modeller og printprofiler, og vælg en profil der passer til din printer.",
+      "status": "in-use",
+      "type": "web",
+      "categoryIds": [
+        "models"
+      ]
+    },
+    {
+      "id": "revo-scan",
+      "name": "Revo Scan",
+      "url": "https://revopedia.revopoint3d.com/en/Revoscan",
+      "description": "Bearbejd 3D-scanninger fra MIRACO, og eksportér dem til videre arbejde.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "3d-scanning"
+      ],
+      "hardware": [
+        "Revopoint MIRACO"
+      ]
+    },
+    {
+      "id": "inkscape",
+      "name": "Inkscape",
+      "url": "https://inkscape.org",
+      "description": "Tegn og redigér vektorgrafik til skæring, broderi og tryk.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "laser",
+        "vinyl-cutting",
+        "waterjet-cutting",
+        "embroidery",
+        "media"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/inkscape/inkscape"
+    },
+    {
+      "id": "boxes-py",
+      "name": "Boxes.py",
+      "url": "https://florianfesti.github.io/boxes/html/",
+      "description": "Generér skabeloner til kasser, samlinger og andre laserskårne emner ud fra dine mål.",
+      "status": "in-use",
+      "type": "web",
+      "categoryIds": [
+        "laser"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/florianfesti/boxes"
+    },
+    {
+      "id": "lightburn",
+      "name": "LightBurn",
+      "url": "https://lightburnsoftware.com",
+      "description": "Klargør tegninger og send skære- og graveringsjob til værkstedets laserudstyr.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "laser"
+      ],
+      "license": "Proprietær betalingslicens"
+    },
+    {
+      "id": "canvasworkspace",
+      "name": "Brother CanvasWorkspace",
+      "url": "https://support.canvasworkspace.brother.com/cwsinfo/download_cws/",
+      "description": "Klargør motiver til folieskæring med Brother ScanNCut.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "vinyl-cutting"
+      ],
+      "hardware": [
+        "Brother ScanNCut CM300",
+        "Brother ScanNCut CX900"
+      ]
+    },
+    {
+      "id": "wazer-wam",
+      "name": "WAZER WAM",
+      "url": "https://wazer.com/waterjets/software",
+      "description": "Lav en skærefil til WAZER ud fra en færdig SVG- eller DXF-tegning.",
+      "status": "in-use",
+      "type": "web",
+      "categoryIds": [
+        "waterjet-cutting"
+      ],
+      "hardware": [
+        "WAZER-vandskærer"
+      ]
+    },
+    {
+      "id": "inkstitch",
+      "name": "Ink/Stitch",
+      "url": "https://inkstitch.org",
+      "description": "Omsæt vektortegninger fra Inkscape til sting og eksportér en broderifil.",
+      "status": "in-use",
+      "type": "plugin",
+      "categoryIds": [
+        "embroidery"
+      ],
+      "license": "Open source",
+      "hardware": [
+        "Brother Innov-is 880E"
+      ],
+      "githubUrl": "https://github.com/inkstitch/inkstitch"
+    },
+    {
+      "id": "arduino-ide",
+      "name": "Arduino IDE",
+      "url": "https://github.com/arduino/arduino-ide",
+      "description": "Skriv, kontrollér og overfør kode til et Arduino-kort.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "electronics"
+      ],
+      "license": "Open source",
+      "hardware": [
+        "Arduino-kits"
+      ],
+      "githubUrl": "https://github.com/arduino/arduino-ide"
+    },
+    {
+      "id": "makecode",
+      "name": "Microsoft MakeCode",
+      "url": "https://makecode.microbit.org",
+      "description": "Programmér micro:bit med blokke eller kode, og prøv programmet i simulatoren.",
+      "status": "in-use",
+      "type": "web",
+      "categoryIds": [
+        "electronics"
+      ],
+      "hardware": [
+        "BBC micro:bit"
+      ]
+    },
+    {
+      "id": "lego-spike",
+      "name": "LEGO Education SPIKE",
+      "url": "https://education.lego.com/en-us/downloads/spike-app/software/",
+      "description": "Programmér SPIKE Prime-modeller med motorer og sensorer.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "electronics"
+      ],
+      "hardware": [
+        "LEGO Education SPIKE Prime"
+      ]
+    },
+    {
+      "id": "vscode",
+      "name": "Visual Studio Code",
+      "url": "https://code.visualstudio.com/",
+      "description": "Skriv og fejlfind kode til eksempelvis mikrocontrollere og små webprojekter med relevante udvidelser.",
+      "status": "in-use",
+      "type": "desktop",
+      "categoryIds": [
+        "electronics"
+      ],
+      "license": "Microsofts produktlicens"
+    },
+    {
+      "id": "freecad",
+      "name": "FreeCAD",
+      "url": "https://www.freecad.org/",
+      "description": "Tegn målfast med parametrisk 3D-CAD, så du kan justere mål og eksportere modellen til 3D-print.",
+      "status": "recommended",
+      "type": "desktop",
+      "categoryIds": [
+        "3d-print"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/FreeCAD/FreeCAD"
+    },
+    {
+      "id": "kicad",
+      "name": "KiCad",
+      "url": "https://kicad.org",
+      "description": "Tegn kredsløbsdiagrammer og lav layout til printkort.",
+      "status": "recommended",
+      "type": "desktop",
+      "categoryIds": [
+        "electronics"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/KiCad/kicad-source-mirror"
+    },
+    {
+      "id": "audacity",
+      "name": "Audacity",
+      "url": "https://www.audacityteam.org/",
+      "description": "Optag og redigér lyd til eksempelvis en podcast.",
+      "status": "recommended",
+      "type": "desktop",
+      "categoryIds": [
+        "media"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/audacity/audacity"
+    },
+    {
+      "id": "gimp",
+      "name": "GIMP",
+      "url": "https://www.gimp.org/",
+      "description": "Beskær og retouchér billeder, eller byg grafik op i lag.",
+      "status": "recommended",
+      "type": "desktop",
+      "categoryIds": [
+        "media"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/GNOME/gimp"
+    },
+    {
+      "id": "scribus",
+      "name": "Scribus",
+      "url": "https://github.com/scribusproject/scribus",
+      "description": "Sæt plakater, foldere og andre tryksager op, og eksportér til PDF.",
+      "status": "recommended",
+      "type": "desktop",
+      "categoryIds": [
+        "media"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/scribusproject/scribus"
+    },
+    {
+      "id": "vlc",
+      "name": "VLC",
+      "url": "https://www.videolan.org/vlc/",
+      "description": "Afspil og gennemse lyd- og videofiler.",
+      "status": "recommended",
+      "type": "desktop",
+      "categoryIds": [
+        "media"
+      ],
+      "license": "Open source",
+      "githubUrl": "https://github.com/videolan/vlc"
+    }
+  ]
+}
