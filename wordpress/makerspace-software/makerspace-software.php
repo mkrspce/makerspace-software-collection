@@ -2,7 +2,8 @@
 /**
  * Plugin Name: Makerspace Næstved Software
  * Description: Importerer softwarekataloget fra Makerspace Næstved til et lokalt WordPress-arkiv.
- * Version: 1.1.0
+ * Version: 1.2.0
+ * Update URI: https://github.com/mkrspce/makerspace-software-collection
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Text Domain: makerspace-software
@@ -17,6 +18,9 @@ const SOURCE = 'https://raw.githubusercontent.com/mkrspce/makerspace-software-co
 const SOURCE_ID = '_mkrspce_software_source_id';
 const LAST_ATTEMPT = 'mkrspce_software_last_attempt';
 const LOGO_HASH = '_mkrspce_software_logo_hash';
+const SYNC_RESULT = 'mkrspce_software_sync_result';
+const LAST_SUCCESS = 'mkrspce_software_last_success';
+const PLUGIN_FILE = __FILE__;
 
 function register_type() {
 	register_post_type(
@@ -182,16 +186,24 @@ function sync_logo( $post_id, $entry ) {
 	}
 }
 
-function sync_catalog() {
+function sync_catalog( $manual = false ) {
 	// Keep the limit across cron retries and plugin reactivation.
 	$now = time();
 	$last_attempt = get_option( LAST_ATTEMPT );
-	if ( $last_attempt !== false && $now - (int) $last_attempt < DAY_IN_SECONDS ) {
-		return;
+	if ( $last_attempt !== false ) {
+		$age = $now - (int) $last_attempt;
+		if ( ! $manual && $age < DAY_IN_SECONDS ) {
+			return 'cached';
+		}
+		$result = get_option( SYNC_RESULT, array() );
+		if ( $age < 15 * MINUTE_IN_SECONDS
+			&& ( $result['attempt'] ?? null ) !== (int) $last_attempt ) {
+			return 'busy';
+		}
 	}
 	if ( $last_attempt === false ) {
 		if ( ! add_option( LAST_ATTEMPT, $now, '', false ) ) {
-			return;
+			return 'busy';
 		}
 	} else {
 		// Atomically claim the next attempt if another request is running cron too.
@@ -202,18 +214,22 @@ function sync_catalog() {
 			array( 'option_name' => LAST_ATTEMPT, 'option_value' => (string) $last_attempt )
 		);
 		if ( $claimed !== 1 ) {
-			return;
+			return 'busy';
 		}
 		wp_cache_delete( LAST_ATTEMPT, 'options' );
 	}
 
 	$response = wp_safe_remote_get( SOURCE, array( 'timeout' => 10, 'limit_response_size' => 1024 * 1024 ) );
-	if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
-		return;
+	if ( is_wp_error( $response ) ) {
+		return record_sync( $now, 'download-error', $response->get_error_message() );
+	}
+	$http_status = wp_remote_retrieve_response_code( $response );
+	if ( $http_status !== 200 ) {
+		return record_sync( $now, 'download-error', 'HTTP ' . $http_status );
 	}
 	$entries = read_catalog( wp_remote_retrieve_body( $response ) );
 	if ( $entries === null ) {
-		return;
+		return record_sync( $now, 'invalid-catalog' );
 	}
 
 	$posts = get_posts(
@@ -254,7 +270,7 @@ function sync_catalog() {
 		}
 		$post_id = wp_insert_post( wp_slash( $fields ), true );
 		if ( is_wp_error( $post_id ) ) {
-			return;
+			return record_sync( $now, 'post-error', $post_id->get_error_message() );
 		}
 		sync_logo( $post_id, $entry );
 	}
@@ -262,9 +278,19 @@ function sync_catalog() {
 	// Keep removed entries as drafts, so they can reuse the same post if restored upstream.
 	foreach ( array_diff_key( $existing, $entries ) as $post ) {
 		if ( $post->post_status === 'publish' ) {
-			wp_update_post( array( 'ID' => $post->ID, 'post_status' => 'draft' ) );
+			$updated = wp_update_post( array( 'ID' => $post->ID, 'post_status' => 'draft' ), true );
+			if ( is_wp_error( $updated ) ) {
+				return record_sync( $now, 'post-error', $updated->get_error_message() );
+			}
 		}
 	}
+	update_option( LAST_SUCCESS, array( 'time' => time(), 'count' => count( $entries ) ), false );
+	return record_sync( $now, 'success' );
+}
+
+function record_sync( $attempt, $status, $error = '' ) {
+	update_option( SYNC_RESULT, array( 'attempt' => $attempt, 'status' => $status, 'error' => $error ), false );
+	return $status;
 }
 
 add_action( 'init', __NAMESPACE__ . '\\register_type' );
@@ -272,3 +298,5 @@ add_action( 'pre_get_posts', __NAMESPACE__ . '\\sort_archive' );
 add_action( CRON_HOOK, __NAMESPACE__ . '\\sync_catalog' );
 register_activation_hook( __FILE__, __NAMESPACE__ . '\\activate' );
 register_deactivation_hook( __FILE__, __NAMESPACE__ . '\\deactivate' );
+
+require_once __DIR__ . '/admin.php';
