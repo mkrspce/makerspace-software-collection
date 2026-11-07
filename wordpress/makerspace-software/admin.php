@@ -5,7 +5,6 @@ namespace MakerspaceNaestved\Software;
 defined( 'ABSPATH' ) || exit;
 
 const CONTROL_PAGE = 'mkrspce-software-control';
-const RELEASE_CACHE = 'mkrspce_software_latest_release';
 const RELEASES = 'https://github.com/mkrspce/makerspace-software-collection/releases';
 
 function register_control_page() {
@@ -33,6 +32,19 @@ function handle_control_action() {
 	switch ( $operation ) {
 		case 'sync':
 			$result = sync_catalog( true );
+			break;
+		case 'purge':
+			if ( ( $_POST['confirm_purge'] ?? null ) !== '1' ) {
+				wp_die( 'Bekræft, at du vil slette de importerede poster.', '', array( 'response' => 400 ) );
+			}
+			$result = purge_catalog();
+			break;
+		case 'uninstall-setting':
+			if ( ! current_user_can( 'delete_plugins' ) ) {
+				wp_die( 'Du har ikke adgang til at slette plugins.', '', array( 'response' => 403 ) );
+			}
+			update_option( PURGE_ON_UNINSTALL, ( $_POST['purge_on_uninstall'] ?? null ) === '1', false );
+			$result = 'setting-saved';
 			break;
 		case 'check-update':
 			if ( ! current_user_can( 'update_plugins' ) ) {
@@ -122,7 +134,10 @@ function render_control_page() {
 	$success = get_option( LAST_SUCCESS, array() );
 	$messages = array(
 		'success'         => 'Kataloget blev genindlæst.',
-		'busy'            => 'En synkronisering kører allerede, eller startede i dette sekund. Prøv igen om lidt.',
+		'busy'            => 'En synkronisering eller oprydning kører allerede. Prøv igen om lidt.',
+		'deleted'         => 'De importerede poster og deres importerede logoer blev slettet.',
+		'delete-error'    => 'Nogle poster eller logoer kunne ikke slettes. Prøv igen.',
+		'setting-saved'   => 'Indstillingen for afinstallation blev gemt.',
 		'download-error'  => 'Katalogfilen kunne ikke hentes.',
 		'invalid-catalog' => 'Den hentede katalogfil er ugyldig.',
 		'post-error'      => 'En softwarepost kunne ikke gemmes.',
@@ -165,6 +180,9 @@ function render_control_page() {
 			<button class="button button-primary" name="operation" value="sync">Genindlæs katalog</button>
 		</form>
 		<p>Den manuelle hentning tilsidesætter 24-timersgrænsen og starter et nyt interval for automatisk hentning.</p>
+		<?php if ( get_option( IMPORT_PAUSED ) ) : ?>
+			<p><strong>Automatisk import er sat på pause.</strong> Genindlæs kataloget for at starte den igen.</p>
+		<?php endif; ?>
 
 		<h2>Plugin</h2>
 		<p>Installeret version: <?php echo esc_html( $installed ); ?></p>
@@ -177,6 +195,26 @@ function render_control_page() {
 				<input type="hidden" name="action" value="mkrspce_software_control">
 				<button class="button" name="operation" value="check-update">Tjek pluginopdatering</button>
 				<a href="<?php echo esc_url( network_admin_url( 'update-core.php' ) ); ?>">Åbn WordPress-opdateringer</a>
+			</form>
+		<?php endif; ?>
+		<h2>Oprydning</h2>
+		<p>Her kan du slette alle softwareposter og logoer importeret af pluginnet permanent. Poster, du selv har oprettet, bevares. Automatisk import sættes på pause.</p>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<?php wp_nonce_field( CONTROL_PAGE ); ?>
+			<input type="hidden" name="action" value="mkrspce_software_control">
+			<label><input type="checkbox" name="confirm_purge" value="1" required> Jeg bekræfter permanent sletning.</label>
+			<button class="button" name="operation" value="purge">Slet importerede poster</button>
+		</form>
+		<?php if ( current_user_can( 'delete_plugins' ) ) : ?>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<?php wp_nonce_field( CONTROL_PAGE ); ?>
+				<input type="hidden" name="action" value="mkrspce_software_control">
+				<p><label>
+					<input type="checkbox" name="purge_on_uninstall" value="1" <?php checked( (bool) get_option( PURGE_ON_UNINSTALL ) ); ?>>
+					Slet importerede poster og logoer, når pluginnet slettes fra WordPress.
+				</label></p>
+				<p>Som standard bevares indholdet. Deaktivering alene sletter aldrig poster.</p>
+				<button class="button" name="operation" value="uninstall-setting">Gem indstilling for afinstallation</button>
 			</form>
 		<?php endif; ?>
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Makerspace Næstved Software
  * Description: Importerer softwarekataloget fra Makerspace Næstved til et lokalt WordPress-arkiv.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Update URI: https://github.com/mkrspce/makerspace-software-collection
  * Requires at least: 6.0
  * Requires PHP: 7.4
@@ -13,14 +13,10 @@ namespace MakerspaceNaestved\Software;
 
 defined( 'ABSPATH' ) || exit;
 
-const CRON_HOOK = 'mkrspce_software_sync';
 const SOURCE = 'https://raw.githubusercontent.com/mkrspce/makerspace-software-collection/main/software.json';
-const SOURCE_ID = '_mkrspce_software_source_id';
-const LAST_ATTEMPT = 'mkrspce_software_last_attempt';
-const LOGO_HASH = '_mkrspce_software_logo_hash';
-const SYNC_RESULT = 'mkrspce_software_sync_result';
-const LAST_SUCCESS = 'mkrspce_software_last_success';
 const PLUGIN_FILE = __FILE__;
+
+require_once __DIR__ . '/cleanup.php';
 
 function register_type() {
 	register_post_type(
@@ -187,37 +183,28 @@ function sync_logo( $post_id, $entry ) {
 }
 
 function sync_catalog( $manual = false ) {
+	return with_catalog_lock(
+		function () use ( $manual ) {
+			if ( ! $manual && get_option( IMPORT_PAUSED ) ) {
+				return 'paused';
+			}
+			$result = sync_catalog_locked( $manual );
+			if ( $manual && $result === 'success' ) {
+				delete_option( IMPORT_PAUSED );
+			}
+			return $result;
+		}
+	);
+}
+
+function sync_catalog_locked( $manual ) {
 	// Keep the limit across cron retries and plugin reactivation.
 	$now = time();
 	$last_attempt = get_option( LAST_ATTEMPT );
-	if ( $last_attempt !== false ) {
-		$age = $now - (int) $last_attempt;
-		if ( ! $manual && $age < DAY_IN_SECONDS ) {
-			return 'cached';
-		}
-		$result = get_option( SYNC_RESULT, array() );
-		if ( $age < 15 * MINUTE_IN_SECONDS
-			&& ( $result['attempt'] ?? null ) !== (int) $last_attempt ) {
-			return 'busy';
-		}
+	if ( ! $manual && $last_attempt !== false && $now - (int) $last_attempt < DAY_IN_SECONDS ) {
+		return 'cached';
 	}
-	if ( $last_attempt === false ) {
-		if ( ! add_option( LAST_ATTEMPT, $now, '', false ) ) {
-			return 'busy';
-		}
-	} else {
-		// Atomically claim the next attempt if another request is running cron too.
-		global $wpdb;
-		$claimed = $wpdb->update(
-			$wpdb->options,
-			array( 'option_value' => (string) $now ),
-			array( 'option_name' => LAST_ATTEMPT, 'option_value' => (string) $last_attempt )
-		);
-		if ( $claimed !== 1 ) {
-			return 'busy';
-		}
-		wp_cache_delete( LAST_ATTEMPT, 'options' );
-	}
+	update_option( LAST_ATTEMPT, $now, false );
 
 	$response = wp_safe_remote_get( SOURCE, array( 'timeout' => 10, 'limit_response_size' => 1024 * 1024 ) );
 	if ( is_wp_error( $response ) ) {

@@ -101,6 +101,10 @@ Første import planlægges ved aktivering. Derefter kører importen via WP-Cron 
 
 I WordPress viser **Software → Kontrol** seneste henteforsøg, seneste gennemførte import og de importerede poster med billedstatus. En administrator kan vælge **Genindlæs katalog** for at hente filen med det samme. Automatisk hentning venter derefter mindst 24 timer. Med **Tjek pluginopdatering** kan en bruger med opdateringsrettigheder søge efter en ny GitHub-release og derefter installere den via WordPress-opdateringer.
 
+Under **Software → Kontrol → Oprydning** kan du slette importerede softwareposter og logoer permanent. Automatisk import sættes på pause, indtil du genindlæser kataloget manuelt. Egne softwareposter bevares.
+
+Hvis du vil rydde op ved afinstallation, skal du gemme tilvalget **Slet importerede poster og logoer, når pluginnet slettes fra WordPress** før deaktivering. Slet derefter pluginnet fra **Plugins**. Deaktivering fjerner registreringen af indholdstypen, og sletning af pluginnet udfører den valgte oprydning. Som standard bevares posterne i databasen.
+
 ## Opdatér kataloget
 
 1. Tilføj eller ret en post i [software.json](software.json). Brug et unikt id, en dansk beskrivelse, et officielt link og mindst én eksisterende kategori. Brug `in-use` for bekræftet lokal brug og `recommended` for anbefalinger. Vælg `desktop`, `web` eller `plugin` som type.
