@@ -49,7 +49,14 @@
       "categoryIds": [
         "3d-print",
         "electronics"
-      ]
+      ],
+      "details": "Tinkercad kører i browseren og har særskilte arbejdsområder til 3D-design, kredsløb og Codeblocks. I 3D-editoren kan man kombinere grundformer og bruge hulformer til at fjerne materiale. Circuits kan simulere kredsløb med blandt andet Arduino, før man bygger dem fysisk.",
+      "detailsSourceUrl": "https://www.tinkercad.com/",
+      "logo": {
+        "path": "logos/tinkercad.png",
+        "sourceUrl": "https://www.tinkercad.com/img/favicon.ico",
+        "sha256": "cd2daa62073e8f3dda8bff8a5880cf6f8df4eaf05df6a0d7f2d2344eec10e687"
+      }
     },
     {
       "id": "openscad",
@@ -62,7 +69,14 @@
         "3d-print"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/openscad/openscad"
+      "githubUrl": "https://github.com/openscad/openscad",
+      "details": "OpenSCAD beskriver en 3D-model i en tekstfil. Man kan give dimensioner navne og kombinere eller trække rumlige former fra hinanden. Programmet kan også bruge 2D-profiler som udgangspunkt for en ekstrudering og eksportere en færdig model som STL.",
+      "detailsSourceUrl": "https://openscad.org/about.html",
+      "logo": {
+        "path": "logos/openscad.png",
+        "sourceUrl": "https://raw.githubusercontent.com/openscad/openscad/master/resources/icons/openscad.png",
+        "sha256": "d41365b32c47abb91238e8ea9542bda0ad5c70c793f18df665e7b8fcc90dbe2b"
+      }
     },
     {
       "id": "prusaslicer",
@@ -79,7 +93,14 @@
         "Original Prusa i3 MK3S+",
         "Original Prusa MINI"
       ],
-      "githubUrl": "https://github.com/prusa3d/PrusaSlicer"
+      "githubUrl": "https://github.com/prusa3d/PrusaSlicer",
+      "details": "PrusaSlicer omsætter en 3D-model til G-code ud fra profiler for printer, filament og print. Før eksport kan man ændre emnets orientering, tilføje støtte og gennemse de beregnede lag. Et 3MF-projekt kan gemme modellerne sammen med indstillingerne.",
+      "detailsSourceUrl": "https://www.prusa3d.com/p/prusaslicer/",
+      "logo": {
+        "path": "logos/prusaslicer.png",
+        "sourceUrl": "https://www.prusa3d.com/img/slicer/logo.png",
+        "sha256": "247379eaae6ba011c66e69df0eb31628e6f67db6502d7fbc809791a9f852d39f"
+      }
     },
     {
       "id": "bambu-studio",
@@ -95,7 +116,14 @@
       "hardware": [
         "Bambu Lab X1 Carbon med firespolet AMS"
       ],
-      "githubUrl": "https://github.com/bambulab/BambuStudio"
+      "githubUrl": "https://github.com/bambulab/BambuStudio",
+      "details": "Bambu Studio er en slicer baseret på PrusaSlicer. Man kan placere emner på flere byggeplader i samme projekt, vælge filament pr. del eller male farver på modellen. Ved brug af AMS kan valgte filamenter knyttes til de spoler, der sidder i systemet.",
+      "detailsSourceUrl": "https://github.com/bambulab/BambuStudio",
+      "logo": {
+        "path": "logos/bambu-studio.png",
+        "sourceUrl": "https://raw.githubusercontent.com/bambulab/BambuStudio/master/resources/images/BambuStudio.png",
+        "sha256": "792d50e0fe1abf267162cb2829ef91d5dcc1d641776d7f7b846d544006734fa8"
+      }
     },
     {
       "id": "printables",
@@ -106,7 +134,14 @@
       "type": "web",
       "categoryIds": [
         "models"
-      ]
+      ],
+      "details": "Printables er Prusas bibliotek med modeller til 3D-print. En modelside kan indeholde flere filer og angiver den licens, udgiveren har valgt. For understøttede modeller kan man åbne en fil direkte i PrusaSlicer fra modelsiden.",
+      "detailsSourceUrl": "https://help.prusa3d.com/article/opening-models-in-prusaslicer-from-supported-websites_399198",
+      "logo": {
+        "path": "logos/printables.png",
+        "sourceUrl": "https://www.printables.com/favicon.ico",
+        "sha256": "0b36507597d17697611a227a89ac4cdef7c8fc2f43f0008cf40dae7d0f14cab4"
+      }
     },
     {
       "id": "makerworld",
@@ -117,7 +152,14 @@
       "type": "web",
       "categoryIds": [
         "models"
-      ]
+      ],
+      "details": "MakerWorld er Bambu Labs platform til deling af 3D-modeller og printprofiler. En model kan have flere profiler til forskellige printere eller indstillinger. Profiler kan åbnes i Bambu Studio, hvor man kan gennemse opstillingen og tilpasse den til sin printer.",
+      "detailsSourceUrl": "https://blog.bambulab.com/makerworld-one-step-printing/",
+      "logo": {
+        "path": "logos/makerworld.png",
+        "sourceUrl": "https://makerworld.com/favicon.ico",
+        "sha256": "b6f50dc0ac02c601ecef6a2cfe5bc60246bdb25cfdd54529a74ea17fbec165e5"
+      }
     },
     {
       "id": "revo-scan",
@@ -131,7 +173,14 @@
       ],
       "hardware": [
         "Revopoint MIRACO"
-      ]
+      ],
+      "details": "Revo Scan behandler data fra Revopoints 3D-scannere. Scanninger kan justeres i forhold til hinanden og samles, hvorefter punktskyen kan omdannes til et polygonnet. Resultatet kan eksporteres i formater som PLY, OBJ og STL til videre arbejde.",
+      "detailsSourceUrl": "https://support.revopoint3d.com/hc/en-us/articles/7777366956827-How-do-I-download-and-use-the-software",
+      "logo": {
+        "path": "logos/revo-scan.png",
+        "sourceUrl": "https://revopedia.revopoint3d.com/rs6-ja/logo.png",
+        "sha256": "23c3dcba2c587dfd5a02ce1ea7f50cf0e6488bd1712946060f34115522842b18"
+      }
     },
     {
       "id": "inkscape",
@@ -148,7 +197,14 @@
         "media"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/inkscape/inkscape"
+      "githubUrl": "https://github.com/inkscape/inkscape",
+      "details": "Inkscape er en vektoreditor med SVG som sit primære format. Tegninger består blandt andet af former, tekst og stier, som kan redigeres med knudepunkter. Stier kan kombineres eller trækkes fra hinanden, så man kan klargøre konturer til skæring eller broderi.",
+      "detailsSourceUrl": "https://inkscape.org/about/features/",
+      "logo": {
+        "path": "logos/inkscape.png",
+        "sourceUrl": "https://media.inkscape.org/static/images/inkscape-favicon.png",
+        "sha256": "3f566b87caae565a0bcb1a0e6cb27afb930ff0904f10d75dcd7b3909aff9cfdc"
+      }
     },
     {
       "id": "boxes-py",
@@ -161,7 +217,14 @@
         "laser"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/florianfesti/boxes"
+      "githubUrl": "https://github.com/florianfesti/boxes",
+      "details": "Boxes.py genererer skæretegninger ud fra mål og valg som materialetykkelse, samlingstype og kompensation for snitbredde. Der er generatorer til blandt andet fingerflettede kasser, bakker og hængsler. Resultatet kan eksporteres som SVG og åbnes i et andet program til selve laserjobbet.",
+      "detailsSourceUrl": "https://florianfesti.github.io/boxes/html/usermanual.html",
+      "logo": {
+        "path": "logos/boxes-py.png",
+        "sourceUrl": "https://florianfesti.github.io/boxes/static/favicon.ico",
+        "sha256": "0b9a87ae63e06e74bec61736485e2d03342ae66de78603cf98e4d988945b1579"
+      }
     },
     {
       "id": "lightburn",
@@ -173,7 +236,14 @@
       "categoryIds": [
         "laser"
       ],
-      "license": "Proprietær betalingslicens"
+      "license": "Proprietær betalingslicens",
+      "details": "LightBurn samler vektortegninger og billeder i et laserprojekt. Farvelag kan have hver sin bearbejdningsform og indstillinger, og forhåndsvisningen viser rækkefølgen for bearbejdningen. Programmet kan importere vektorformater som SVG og DXF. Understøttelsen afhænger af maskinens controller.",
+      "detailsSourceUrl": "https://docs.lightburnsoftware.com/latest/",
+      "logo": {
+        "path": "logos/lightburn.png",
+        "sourceUrl": "https://lightburnsoftware.com/cdn/shop/files/LIGHTBURN_square.jpg?v=1613157151&width=180",
+        "sha256": "d3ae989943cfe208e47e9f903b3dc82a6eb096df1353638b1ff889bf36efcbb6"
+      }
     },
     {
       "id": "canvasworkspace",
@@ -188,7 +258,9 @@
       "hardware": [
         "Brother ScanNCut CM300",
         "Brother ScanNCut CX900"
-      ]
+      ],
+      "details": "Brother CanvasWorkspace til Windows og macOS bruges til at tegne og redigere skæremotiver. Man kan importere en SVG-fil, tilpasse motivet og gemme skæredata i Brothers FCM-format til en ScanNCut-maskine.",
+      "detailsSourceUrl": "https://solucoes.brother.com.br/canvasworkspace-para-pc"
     },
     {
       "id": "wazer-wam",
@@ -202,7 +274,14 @@
       ],
       "hardware": [
         "WAZER-vandskærer"
-      ]
+      ],
+      "details": "WAZER WAM er producentens browserprogram til at klargøre filer til WAZER-vandskærere. Man importerer en færdig SVG- eller DXF-tegning, placerer emnet og vælger materiale og skærekvalitet. WAM beregner blandt andet en forventet skæretid og gemmer en G-code-fil til maskinen.",
+      "detailsSourceUrl": "https://wazer.com/waterjets/software",
+      "logo": {
+        "path": "logos/wazer-wam.png",
+        "sourceUrl": "https://wam.wazer.com/favicon.ico",
+        "sha256": "2fb28f28939ebe4baff87dcb99122ad4fb6951e3b25f0c54d9776ede5e613048"
+      }
     },
     {
       "id": "inkstitch",
@@ -218,7 +297,14 @@
       "hardware": [
         "Brother Innov-is 880E"
       ],
-      "githubUrl": "https://github.com/inkstitch/inkstitch"
+      "githubUrl": "https://github.com/inkstitch/inkstitch",
+      "details": "Ink/Stitch er en Inkscape-udvidelse til at omsætte vektorobjekter til maskinbroderi. Man kan indstille blandt andet løbesting, satinsting og fyldsting og gennemse rækkefølgen i simulatoren. Motivet kan eksporteres i forskellige broderiformater, herunder PES.",
+      "detailsSourceUrl": "https://inkstitch.org/features/",
+      "logo": {
+        "path": "logos/inkstitch.png",
+        "sourceUrl": "https://inkstitch.org/favicon.ico",
+        "sha256": "3d885be960771d164b5dd1bd44032f88af952835ea11a0e9a1496726dd5f8b4a"
+      }
     },
     {
       "id": "arduino-ide",
@@ -234,7 +320,14 @@
       "hardware": [
         "Arduino-kits"
       ],
-      "githubUrl": "https://github.com/arduino/arduino-ide"
+      "githubUrl": "https://github.com/arduino/arduino-ide",
+      "details": "Arduino IDE samler editor, kompilering og overførsel af programmer til Arduino-kompatible kort. Kort- og biblioteksadministratorerne installerer henholdsvis kortunderstøttelse og genbrugelig kode. Den serielle monitor kan vise beskeder fra et tilsluttet kort, mens programmet kører.",
+      "detailsSourceUrl": "https://docs.arduino.cc/software/ide-v2/",
+      "logo": {
+        "path": "logos/arduino-ide.png",
+        "sourceUrl": "https://raw.githubusercontent.com/arduino/arduino-ide/main/arduino-ide-extension/src/browser/style/ide-logo.png",
+        "sha256": "ef01a4b53db1c144d108e4bba5b62cdb9fcf5238f176bfff7d6af9b2970e522c"
+      }
     },
     {
       "id": "makecode",
@@ -248,7 +341,14 @@
       ],
       "hardware": [
         "BBC micro:bit"
-      ]
+      ],
+      "details": "Microsoft MakeCode til micro:bit kører i browseren og understøtter blokke, JavaScript og Python. Simulatoren kan afprøve blandt andet knapper og LED-matricen, inden programmet overføres til et fysisk micro:bit-kort.",
+      "detailsSourceUrl": "https://makecode.microbit.org/about",
+      "logo": {
+        "path": "logos/makecode.png",
+        "sourceUrl": "https://cdn.makecode.com/blob/4de54063603c8d16531078818a83f7c29a3588fa/static/icons/apple-touch-icon.png",
+        "sha256": "eba2d84fd437663defdb02b5c3b5797605bc20160005a0d0d23bd9c9f12d5eac"
+      }
     },
     {
       "id": "lego-spike",
@@ -262,7 +362,14 @@
       ],
       "hardware": [
         "LEGO Education SPIKE Prime"
-      ]
+      ],
+      "details": "LEGO Education SPIKE er appen til at programmere SPIKE Prime-hubben og de tilsluttede motorer og sensorer. Appen understøtter ordblokke og Python til SPIKE Prime. Programmer overføres til hubben, så robotten kan udføre dem.",
+      "detailsSourceUrl": "https://education.lego.com/en-us/product-resources/spike-prime/downloads/python/",
+      "logo": {
+        "path": "logos/lego-spike.png",
+        "sourceUrl": "https://spike.legoeducation.com/favicon.ico",
+        "sha256": "496eb7ea27cd965cdb451285e961a06ec4e5153a0b90bf28bb9f3da27aa42cec"
+      }
     },
     {
       "id": "vscode",
@@ -274,7 +381,14 @@
       "categoryIds": [
         "electronics"
       ],
-      "license": "Microsofts produktlicens"
+      "license": "Microsofts produktlicens",
+      "details": "Visual Studio Code er en kodeeditor til Windows, macOS og Linux. Den har en integreret terminal, Git-funktioner og en debugger. Udvidelser kan tilføje understøttelse af flere programmeringssprog og værktøjer til bestemte typer projekter.",
+      "detailsSourceUrl": "https://code.visualstudio.com/docs",
+      "logo": {
+        "path": "logos/vscode.png",
+        "sourceUrl": "https://code.visualstudio.com/assets/apple-touch-icon.png",
+        "sha256": "c0f1b69981fb021ced2abeac9219c2993d6198812620722aef3aa4d19c858c94"
+      }
     },
     {
       "id": "freecad",
@@ -287,7 +401,14 @@
         "3d-print"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/FreeCAD/FreeCAD"
+      "githubUrl": "https://github.com/FreeCAD/FreeCAD",
+      "details": "FreeCAD er et parametrisk CAD-program. Man kan fastholde mål og geometriske relationer i skitser og bygge rumlige dele videre på skitserne. Modeller kan blandt andet udveksles som STEP og eksporteres som STL til en slicer.",
+      "detailsSourceUrl": "https://www.freecad.org/features",
+      "logo": {
+        "path": "logos/freecad.png",
+        "sourceUrl": "https://www.freecad.org/images/favicon.ico",
+        "sha256": "68294e8620aab8f803cf19f046d4d15c8191ee8804782d4e6a762fa448c0f077"
+      }
     },
     {
       "id": "kicad",
@@ -300,7 +421,14 @@
         "electronics"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/KiCad/kicad-source-mirror"
+      "githubUrl": "https://github.com/KiCad/kicad-source-mirror",
+      "details": "KiCad indeholder en editor til kredsløbsdiagrammer og en editor til printkort. Man kan forbinde diagrammets symboler med fysiske footprints, føre kobberbaner og køre kontrol af designregler. En 3D-visning viser printkortet med de komponentmodeller, der er knyttet til layoutet.",
+      "detailsSourceUrl": "https://www.kicad.org/discover/",
+      "logo": {
+        "path": "logos/kicad.png",
+        "sourceUrl": "https://www.kicad.org/apple-touch-icon-180x180.png",
+        "sha256": "23531cf5d79b71ad7b2a6da1cef8c74a503a2ab41e575015b3f0c78769dd5018"
+      }
     },
     {
       "id": "audacity",
@@ -313,7 +441,14 @@
         "media"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/audacity/audacity"
+      "githubUrl": "https://github.com/audacity/audacity",
+      "details": "Audacity er en lydoptager og flersporseditor. Optagelser kan klippes, flyttes og justeres på separate spor, for eksempel tale og baggrundslyd i en podcast. Programmet har effekter til blandt andet støjreduktion og kan eksportere lyd som WAV og MP3.",
+      "detailsSourceUrl": "https://www.audacityteam.org/features/",
+      "logo": {
+        "path": "logos/audacity.png",
+        "sourceUrl": "https://www.audacityteam.org/apple-touch-icon.png",
+        "sha256": "f093200fd4fb5fd840a1decbd01e9fa7cf3a5fcdb8f48431185584ae81960a32"
+      }
     },
     {
       "id": "gimp",
@@ -326,7 +461,14 @@
         "media"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/GNOME/gimp"
+      "githubUrl": "https://github.com/GNOME/gimp",
+      "details": "GIMP er en editor til rastergrafik og fotos. Man kan arbejde med lag og masker, justere farver og beskære eller retouchere billeder. Projekter kan gemmes i GIMPs XCF-format med lagene intakte og eksporteres til formater som PNG og JPEG.",
+      "detailsSourceUrl": "https://www.gimp.org/",
+      "logo": {
+        "path": "logos/gimp.png",
+        "sourceUrl": "https://www.gimp.org/images/frontpage/wilber-big.png",
+        "sha256": "b7247209d44ecc96231dee7da726f56814f85f2c128a365a7d7398a9c9613f25"
+      }
     },
     {
       "id": "scribus",
@@ -339,7 +481,14 @@
         "media"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/scribusproject/scribus"
+      "githubUrl": "https://github.com/scribusproject/scribus",
+      "details": "Scribus er et program til sidelayout af blandt andet plakater, foldere og hæfter. Tekst og billeder placeres i rammer på siden, og typografi kan styres med formater. Programmet kan eksportere PDF til tryk og understøtter farvestyring.",
+      "detailsSourceUrl": "https://github.com/scribusproject/scribus/blob/master/doc/en/readme.html",
+      "logo": {
+        "path": "logos/scribus.png",
+        "sourceUrl": "https://raw.githubusercontent.com/scribusproject/scribus/master/resources/iconsets/1_5_1/scribus.png",
+        "sha256": "ee8d4b0438ffe5da754bc277e5699d33c9bcc72df5e4824d616f7866a8a5d727"
+      }
     },
     {
       "id": "vlc",
@@ -352,7 +501,14 @@
         "media"
       ],
       "license": "Open source",
-      "githubUrl": "https://github.com/videolan/vlc"
+      "githubUrl": "https://github.com/videolan/vlc",
+      "details": "VLC er en medieafspiller, der kan åbne lokale lyd- og videofiler samt netværksstreams. Den understøtter blandt andet MP4, MKV, MP3 og FLAC. Når en video har flere lydspor eller undertekster, kan man vælge mellem dem i afspilleren.",
+      "detailsSourceUrl": "https://images.videolan.org/vlc/features.html",
+      "logo": {
+        "path": "logos/vlc.png",
+        "sourceUrl": "https://images.videolan.org/images/favicon-192.png",
+        "sha256": "455c514dc9cca391e4f2eb18903124b8d2ccab25a0718aac12a7922a20fd3894"
+      }
     }
   ]
 }

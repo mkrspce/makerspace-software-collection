@@ -87,11 +87,15 @@ Se også [Makerspace Næstveds maskinoversigt](https://www.naestved.dk/kommunen/
 
 [software.json](software.json) indeholder det samme katalog som strukturerede data. Find værktøjerne i `tools`, brug `id` som stabil nøgle, og slå kategorinavne op via `categoryIds` og `categories`.
 
+`details` er den længere, kildebelagte beskrivelse til softwaresiden. Kilden står i `detailsSourceUrl`. Hvor der findes et logo eller appikon, angiver `logo` filstien i repoet, udgiverens billedkilde og billedfilens SHA-256. Logoerne identificerer de enkelte produkter. Eventuelle rettigheder til logoerne tilhører deres respektive ejere.
+
 ## Vis kataloget i WordPress
 
 Download [makerspace-software.zip](https://github.com/mkrspce/makerspace-software-collection/releases/latest/download/makerspace-software.zip), upload ZIP-filen under **Plugins → Tilføj nyt → Upload plugin**, og aktivér pluginnet. Du kan også kopiere mappen [makerspace-software](wordpress/makerspace-software) til `wp-content/plugins/`.
 
 Pluginnet registrerer indholdstypen `software`. Med læsbare permalinks ligger arkivet på `/software/`, og med almindelige permalinks på `/?post_type=software`. WordPress-temaet styrer arkivets udseende. Undgå at oprette en almindelig side med samme slug.
+
+Softwaresiden bruger den længere beskrivelse, når den findes. Pluginnet gemmer katalogets logoer i mediebiblioteket og knytter dem til posterne som fremhævede billeder. Temaet styrer, hvor billederne vises.
 
 Første import planlægges ved aktivering. Derefter kører importen via WP-Cron med mindst 24 timer mellem henteforsøg. På et site med få besøg kan importen blive forsinket, medmindre serveren allerede kalder WP-Cron regelmæssigt. De importerede poster fungerer som lokal cache og bliver stående, hvis GitHub er utilgængeligt, eller JSON-filen er ugyldig. Ved en vellykket import bliver værktøjer, der er fjernet fra kataloget, sat som kladder. Redigér kataloget i JSON, da næste import overskriver ændringer til importerede titler og beskrivelser.
 

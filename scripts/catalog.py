@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -74,6 +75,23 @@ def validate(data):
             require(
                 is_url(url) and urlsplit(url).netloc == "github.com",
                 f"{entry_id} skal have en gyldig GitHub-URL.",
+            )
+        if "details" in entry or "detailsSourceUrl" in entry:
+            require(nonempty(entry.get("details")), f"{entry_id} mangler details.")
+            require(is_url(entry.get("detailsSourceUrl")), f"{entry_id} mangler en kilde til details.")
+        if "logo" in entry:
+            logo = entry["logo"]
+            path = f"logos/{entry_id}.png"
+            require(
+                isinstance(logo, dict) and logo.get("path") == path and is_url(logo.get("sourceUrl")),
+                f"{entry_id} har ugyldige logooplysninger.",
+            )
+            image = (ROOT / path).read_bytes()
+            require(
+                image.startswith(b"\x89PNG\r\n\x1a\n")
+                and len(image) <= 512 * 1024
+                and logo.get("sha256") == hashlib.sha256(image).hexdigest(),
+                f"{entry_id} har en ugyldig PNG-fil eller en SHA-256, der ikke stemmer.",
             )
         for field, validator in (("hardware", nonempty), ("sourceUrls", is_url)):
             if field in entry:
